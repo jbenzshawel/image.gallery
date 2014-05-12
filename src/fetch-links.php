@@ -26,7 +26,7 @@
 		 * @param $url = string of imgur gallery url 
 		 * retruns $results array("gallery" => $gallery, "title" => $title)
 		 */
-		public  static function get_imgur_gallery($url){
+		public static function get_imgur_gallery($url){
 			$imgur = file_get_contents($url);
 			$gallery = array();
 			$regex = "!(.*)(</title>)!i";
