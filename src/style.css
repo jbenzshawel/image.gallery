@@ -1,0 +1,87 @@
+/* STYLES */
+
+html, body {
+	width:100%;
+	height:100%;
+	margin:0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+.md {
+	display: none;
+}
+
+.wrapper {
+	margin-top:58px;
+}
+
+.main {
+	width:100%;
+	height:65px;
+	position:fixed;
+	margin-top:-15px !important;
+	background-color:#333;
+	border-bottom:1px solid #222;
+	-moz-box-shadow:    2px 2px 1px 1px #666;
+  	-webkit-box-shadow: 2px 2px 1px 1px #666;
+  	box-shadow: 2px 2px 1px 1px #666;
+
+}
+
+.main h2 a {
+	color: white;
+	font-size: 24px;
+	font-weight: lighter;
+	text-decoration: none;
+	margin-top: 114px;
+	position: absolute;
+	top:-89px;
+	right: 80%;
+	width:240px;
+}
+
+.main h3 a {
+	color: white;
+	font-size: 24px;
+	
+	float:right;
+	text-decoration: none;
+	margin-right:8px;
+}
+
+input[type="search"]{
+	height: 25px;
+	width: 160px;
+	font-size: 17px;
+	text-align: left;
+}
+#searchSub{
+	margin-left:-2000px;
+}
+li {
+	list-style-type: none;
+}
+.images li {
+	margin:20px auto;
+	display:block;
+	text-align: center;
+}
+.imgur-gal li {
+	display:none;
+}
+.imgur-gal li:first-child{
+	display:block !important;
+}
+.thumbnail {
+	width:350px;
+	height:auto;
+	margin:0 auto;
+	display: block;
+}
+
+.nextPage {
+	margin:20px auto;
+	display: block;
+	text-align: center;
+}
