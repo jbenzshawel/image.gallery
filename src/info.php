@@ -19,7 +19,9 @@
 <iframe src="http://addison.im/oneK/gonewild/" style="width:100%; height:95%;">
   <p>Your browser does not support iframes.</p>
 </iframe>
-<a href="index.php" class="homeLink"style="text-align:center; margin:0 auto; display:block;">Home</a>
+<a href="index.php" class="homeLink"style="text-align:center; margin:0 auto; display:block; text-decoration:none;"> 
+	<span style="color:black;">Gallery View</span>
+</a>
 
     <!--GOOLGE ANALYTICS-->
     <script>

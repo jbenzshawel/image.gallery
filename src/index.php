@@ -23,7 +23,7 @@
 	$next_page = $page + 1;
 	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
 	if($subreddit != "gonewild"){
-		$images = Gallery::get_images("http://addison.im/oneK/gonewild/", $page);
+		$images = Gallery::get_images("http://addison.im/oneK/$subreddit/", $page);
 	}else {
 		$images = Gallery::get_images("http://addison.im/oneK/gonewild/", $page);
 

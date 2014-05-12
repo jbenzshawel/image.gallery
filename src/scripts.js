@@ -4,18 +4,28 @@ $(document).ready(function(){
     if(e.originalEvent.wheelDelta < 0) {
         //user is scrolling down
        $('.main').css('display','none');
+      $('iframe').css('height', '95%');
+
+       //$('.homeLink').css('display','block');
+
     }else {
         //user is scrolling up
        $('.main').css('display','block');
+        // $('.homeLink').css('display','none');
+        $('iframe').css('height', '100%');
     }
   });
-  $('body').keydown(function(h){
+   $('body').keydown(function(h){
       if(h.keyCode == 38){
         //user presses up key
         $('.main').css('display','block');
+       //$('.homeLink').css('display','none');
+
       } else if(h.keyCode == 40){
         // user presses down key
        $('.main').css('display','none');
+       //$('.homeLink').css('display','block');
+
       }
   });
 
