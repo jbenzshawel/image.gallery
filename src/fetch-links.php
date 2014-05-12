@@ -31,7 +31,7 @@
 			$gallery = array();
 			$regex = "!(.*)(</title>)!i";
 			preg_match($regex, $imgur, $title);
-			preg_match_all('/img.+"/', $imgur, $image_match);
+			//preg_match_all('/img.+"/', $imgur, $image_match);
 			preg_match_all('/data-src=.+"/', $imgur, $filter);
 		
 			foreach($filter[0] as $entry){
