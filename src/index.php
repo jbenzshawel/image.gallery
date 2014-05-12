@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Wank Gallery</title>
 
 	<!--Styles-->
@@ -18,12 +19,13 @@
 <?php
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
+	//$Gallery = new Gallery();	
 	$next_page = $page + 1;
-	$subreddit = (isset($_GET) and strlen($_GET['subreddit']) > 1) ? $_GET['subreddit'] : 'gonewild';
+	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
 	if($subreddit != "gonewild"){
-		$images = get_images("http://addison.im/oneK/gonewild/", $page);
+		$images = Gallery::get_images("http://addison.im/oneK/gonewild/", $page);
 	}else {
-		$images = get_images("http://addison.im/oneK/$subreddit/", $page);
+		$images = Gallery::get_images("http://addison.im/oneK/gonewild/", $page);
 
 	}
 	$i = 0;
@@ -40,7 +42,7 @@
 		foreach($images as $image){
 			if(strpos($image, "/a/")){
 				$j = 0;
-				$gallery = get_imgur_gallery($image);
+				$gallery = Gallery::get_imgur_gallery($image, '1');
 				$gallery_title = $gallery['title'][0];
 				echo "<li><ul class='imgur-gal'>";
 				foreach($gallery['gallery'] as $imgur){

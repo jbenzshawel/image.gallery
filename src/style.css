@@ -6,6 +6,9 @@ html, body {
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
 }
+ul {
+	padding:0;
+}
 
 
 .md {
@@ -37,14 +40,14 @@ html, body {
 	margin-top: 114px;
 	position: absolute;
 	top:-89px;
-	right: 80%;
+	right: 78%;
 	width:240px;
 }
 
 .main h3 a {
 	color: white;
 	font-size: 24px;
-	
+	font-weight: lighter;
 	float:right;
 	text-decoration: none;
 	margin-right:8px;
@@ -61,6 +64,9 @@ input[type="search"]{
 }
 li {
 	list-style-type: none;
+}
+.images{
+	padding:0;
 }
 .images li {
 	margin:20px auto;
@@ -84,4 +90,11 @@ li {
 	margin:20px auto;
 	display: block;
 	text-align: center;
+}
+
+@media screen and (max-width:480px){
+	.images li {
+		margin: 5px 0 5px -5px;
+		padding:0;
+	}
 }
