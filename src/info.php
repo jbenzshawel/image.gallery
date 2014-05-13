@@ -9,9 +9,7 @@
 			$title = "Wank Gallery";
 		} else {
 			$title = "/r/$subreddit - Wank Gallery";
-		}
-
-	?>
+		} ?>
 	<title><?php echo $title; ?></title>
 
 	<!--Styles-->
@@ -33,10 +31,7 @@
 		}else {
 			$content = Gallery::fetchPosts($subreddit, $limit, $after);
 			$link_info = "?page=$page";
-		}
-	
-		$i = 0;
-	?>
+		}	?>
 <!--Off Canvas Wrapper-->
 <div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">

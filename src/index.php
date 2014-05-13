@@ -9,9 +9,7 @@
 			$title = "Wank Gallery";
 		} else {
 			$title = "/r/$subreddit - Wank Gallery";
-		}
-
-	?>
+		} ?>
 	<title><?php echo $title; ?></title>
 
 	<!--Styles-->
@@ -31,12 +29,7 @@
 	}else {
 		$images = Gallery::get_images($subreddit, $page);
 		$link_info = "?page=$page";
-	}
-	if(!isset($link_info)){
-		$link_info="";
-	}
-	$i = 0;
-?>
+	} ?>
 <!--Off Canvas Wrapper-->
 <div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">
@@ -55,6 +48,7 @@
 		<!--Main Content-->
 		<ul class="images">
 		<?php
+			$i = 0;
 			foreach($images as $image){
 				if(strpos($image['link'], "/a/")){
 					$j = 0;
@@ -82,8 +76,7 @@
 						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 					}
 				}
-			}
-		?>
+			} ?>
 		</ul><!--Close image list-->
 	<?php if($subreddit == "gonewild"): ?>
 				<a href="<?php echo '?page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
