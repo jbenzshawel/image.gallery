@@ -1,4 +1,5 @@
 <?php
+
 	class Gallery{
 		/**
 		 * @param $url = string url of reddit subreddit to scrape images from
@@ -6,18 +7,26 @@
 		 * returns $images array 
 		 */
 		public static function get_images($subreddit, $page){
-			$images = array();
 			$url = "http://reddit.com/r/$subreddit.rss";
 			$next_page = $page + 1;
 			$limit = 25*$page;
 			$after = $limit - 25;
 			$feed_url = isset($page) ? ((int)$page > 0 ? "$url?limit=$limit"  : $url) : $url;
 			$reddit_scrape = file_get_contents($feed_url);
+			$rss = simplexml_load_file($feed_url);	
 			$reddit_scrape_array = explode(" ", $reddit_scrape);
+			$i = 0;
+			$j = 0;
 			foreach($reddit_scrape_array as $row){
 				if(strpos($row, '[link]')) {
-					$images[] = substr($row, 10, strlen($row) - 35);  
+					$images[$i]['link'] = substr($row, 10, strlen($row) - 35);  
+					$i++;
 				}
+
+			}
+			foreach($rss->channel->item as $feedItem){
+				$images[$j]['title'] = $feedItem->title;
+				$j++;
 			}
 			if($limit == 25){
 				return $images;
@@ -38,9 +47,8 @@
 			$gallery = array();
 			$regex = "!(.*)(</title>)!i";
 			preg_match($regex, $imgur, $title);
-			//preg_match_all('/img.+"/', $imgur, $image_match);
 			preg_match_all('/data-src=.+"/', $imgur, $filter);
-		
+			
 			foreach($filter[0] as $entry){
 					$new_imgur = substr($entry, strpos($entry, "/") + 1);  
 					$gallery[] = 'http:/' . $new_imgur;

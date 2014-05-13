@@ -3,7 +3,16 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Wank Gallery</title>
+		<?php
+		$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
+		if($subreddit == 'gonewild'){
+			$title = "Wank Gallery";
+		} else {
+			$title = "/r/$subreddit - Wank Gallery";
+		}
+
+	?>
+	<title><?php echo $title; ?></title>
 
 	<!--Styles-->
 	<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" />
@@ -16,7 +25,6 @@
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$next_page = $page + 1;
-	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
 	if($subreddit != "gonewild"){
 		$images = Gallery::get_images($subreddit, $page);
 		$link_info = "?subreddit=$subreddit&page=$page";
@@ -48,9 +56,9 @@
 		<ul class="images">
 		<?php
 			foreach($images as $image){
-				if(strpos($image, "/a/")){
+				if(strpos($image['link'], "/a/")){
 					$j = 0;
-					$gallery = Gallery::get_imgur_gallery($image, '1');
+					$gallery = Gallery::get_imgur_gallery($image['link']);
 					$gallery_title = $gallery['title'][0];
 					echo "<li><ul class='imgur-gal'>";
 					foreach($gallery['gallery'] as $imgur){
@@ -62,18 +70,30 @@
 					}
 					echo "</ul></li>";
 					$i++;
+
 				} else {
-					if(substr($image, -4, 1) == "."){
-						echo '<li><a class="fancybox" rel="group" href="' . $image . '"><img class="thumbnail" src="' . $image .'" alt=""/></a></li>' . "\n"; 
+					if(substr($image['link'], -4, 1) == "."){
+						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt=""/></a></li>' . "\n"; 
+					} elseif (substr($image['link'], 0, 21) == 'http://www.reddit.com' ) {
+						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
+					} elseif(strpos($image['link'], 'imgur') and substr($image['link'], -4, 1) != ".")  {
+						$cleaned_link = strpos($image['link'], "&") ? substr($image['link'], 0, stripos($image['link'], "&") ) : $image['link'];
 					} else{
-						echo '<li><a class="fancybox" rel="group" href="' . $image . '"><img class="thumbnail" src="http://placehold.it/350x350" alt=""/></a></li>' . "\n"; 
+						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 					}
 				}
 			}
 		?>
 		</ul><!--Close image list-->
-		<a class="nextPage" href="?page=<?php echo $next_page; ?>">Page <?php echo $next_page; ?></a>
-  <!-- close the off-canvas menu -->
+	<?php if($subreddit == "gonewild"): ?>
+				<a href="<?php echo '?page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
+		<?php elseif($page == 5): ?>
+			<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
+		<?php else: ?>
+				<a href="<?php echo '?subreddit=' . $subreddit . '&page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
+		<?php endif; ?>
+		
+<!-- close the off-canvas menu -->
   <a class="exit-off-canvas"></a>
 
   </div> <!--End Inner Wrapper-->
@@ -86,15 +106,15 @@
 	<script src="lib/fancybox/jquery.fancybox.js"></script>
 	<script type="text/javascript" src="scripts.js"></script>
 
-    <!--GOOLGE ANALYTICS-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<!--GOOLGE ANALYTICS-->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-43365901-2', 'addison.im');
-      ga('send', 'pageview');
-    </script>
+		ga('create', 'UA-43365901-3', 'wank.gallery');
+		ga('send', 'pageview');
+	</script>
 </body>
 </html>

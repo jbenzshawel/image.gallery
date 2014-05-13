@@ -84,11 +84,13 @@ a:hover{
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
 }
 .off-canvas-list li:nth-of-type(1){
-	margin-top:25px;
+	margin:12.5px 0;
 }
 input[type="search"]{
 	height: 60px;
 	width: 95%;
+	margin: 40px auto -20px auto;
+	display: block;
 	font-size: 17px;
 	text-align: left;
 }
@@ -139,6 +141,7 @@ input[type="search"]{
 	margin:80px auto 20px auto;
 	display: block;
 	max-width:500px;
+	min-width:350px;
 	background-image:url('img/old_moon.png');
 	background-repeat: repeat-y;
 	background-color: transparent;

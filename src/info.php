@@ -2,8 +2,17 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Wank Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<?php
+		$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
+		if($subreddit == 'gonewild'){
+			$title = "Wank Gallery";
+		} else {
+			$title = "/r/$subreddit - Wank Gallery";
+		}
+
+	?>
+	<title><?php echo $title; ?></title>
 
 	<!--Styles-->
 	<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" />
@@ -18,7 +27,6 @@
 		$next_page = $page + 1;
 		$limit = 25*$page;
 		$after = $limit - 25;
-		$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
 		if($subreddit != "gonewild"){
 			$content = Gallery::fetchPosts($subreddit, $limit, $after);
 			$link_info = "?subreddit=$subreddit&page=$page";
@@ -34,7 +42,7 @@
 	<div class="inner-wrap">
 		<!--Header-->
 		<header class="main">
-			<h2><a href="info.php">Wank Gallery</a></h2>
+			<h2><a href="info.php">/r/<?php echo $subreddit; ?></a></h2>
 			<a class="right-off-canvas-toggle" href="#" >Menu</a>
 
 			<!-- Off Canvas Menu -->
@@ -49,12 +57,12 @@
 			<?php echo $content; ?>
 		</div>
 
-		<?php if($subreddit == "all"): ?>
-				<a href=<?php echo '"&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
+		<?php if($subreddit == "gonewild"): ?>
+				<a href="<?php echo '?page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
 		<?php elseif($page == 5): ?>
 			<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
 		<?php else: ?>
-				<a href=<?php echo '"' . $subreddit . '&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
+				<a href="<?php echo 'info.php?subreddit=' . $subreddit . '&page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
 		<?php endif; ?>
 
   <!-- close the off-canvas menu -->
@@ -70,15 +78,16 @@
 	<script src="lib/fancybox/jquery.fancybox.js"></script>
 	<script type="text/javascript" src="scripts.js"></script>
 
-    <!--GOOLGE ANALYTICS-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<!--GOOLGE ANALYTICS-->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-43365901-2', 'addison.im');
-      ga('send', 'pageview');
-    </script>
+		ga('create', 'UA-43365901-3', 'wank.gallery');
+		ga('send', 'pageview');
+	</script>
+
 </body>
 </html>
