@@ -46,17 +46,17 @@
 		</header><!--End Header-->
 		<!--Main Content-->
 		<div class="info-wrap">
-		<?php 
-			echo $content; 
-			if($subreddit == "all"):
-		?>
+			<?php echo $content; ?>
 		</div>
+
+		<?php if($subreddit == "all"): ?>
 				<a href=<?php echo '"&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
 		<?php elseif($page == 5): ?>
 			<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
 		<?php else: ?>
 				<a href=<?php echo '"' . $subreddit . '&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
 		<?php endif; ?>
+		
   <!-- close the off-canvas menu -->
   <a class="exit-off-canvas"></a>
 
