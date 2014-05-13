@@ -7,22 +7,72 @@
 
 	<!--Styles-->
 	<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" />
+	<link rel="stylesheet" type="text/css" href="lib/foundation/css/foundation.css" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-
-	<!--Scripts-->
-	<script type="text/javascript" src="lib/jquery.min.1.11.js"></script>
-	<script type="text/javascript" src="lib/fancybox/jquery.fancybox.js"></script>
-	<script type="text/javascript" src="scripts.js"></script>
 </head>
-<body style="overflow:hidden;">
-<iframe src="http://addison.im/oneK/gonewild/" style="width:100%; height:95%;">
-  <p>Your browser does not support iframes.</p>
-</iframe>
-<a href="index.php" class="homeLink"style="text-align:center; margin:0 auto; display:block; text-decoration:none;"> 
-	<span style="color:black;">Gallery View</span>
-</a>
+<body>
+<!--Off Canvas Wrapper-->
+<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
+		<!--Header-->
+		<header class="main">
+			<h2><a href="#">Wank Gallery</a></h2>
+			<a class="right-off-canvas-toggle" href="#" >Menu</a>
 
+			<!-- Off Canvas Menu -->
+		    <aside class="right-off-canvas-menu">
+		        <ul class="off-canvas-list">
+		          <li>'<input type="search" placeholder="search subreddits" name="s"></input><input type="submit" id="searchSub" ></input></li>
+		          <li><a href="info.php">Details View</a></li>
+		          <li><a href="index.php">Gallery View</a></li>
+		        </ul>
+		    </aside>
+		</header><!--End Header-->
+		<!--Main Content-->
+		<div class="info-wrap">
+		<?php
+			require_once('fetch-links.php');
+			$page = isset($_GET['page']) ? $_GET['page'] : 1;
+			$next_page = $page + 1;
+			$limit = 25*$page;
+			$after = $limit - 25;
+			$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
+			if($subreddit != "gonewild"){
+				$content = Gallery::fetchPosts($subreddit, $limit, $after);
+			}else {
+				$content = Gallery::fetchPosts($subreddit, $limit, $after);
+
+			}
+			$i = 0;
+		?>
+		<?php 
+			echo $content; 
+			if($subreddit == "all"):
+		?>
+		</div>
+				<a href=<?php echo '"&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
+		<?php elseif($page == 5): ?>
+			<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
+		<?php else: ?>
+				<a href=<?php echo '"' . $inputs['category'] . '&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
+		<?php endif; ?>
+  <!-- close the off-canvas menu -->
+  <a class="exit-off-canvas"></a>
+
+  </div> <!--End Inner Wrapper-->
+</div><!--End Off Canvas Wrapper-->
+	
+	<!--Framework Stuff-->
+	<script src="lib/jquery.min.1.11.js"></script>
+	<script src="lib/foundation/js/foundation/foundation.js"></script>
+	<script src="lib/foundation/js/foundation/foundation.offcanvas.js"></script>
+	<script src="lib/fancybox/jquery.fancybox.js"></script>
+	<script type="text/javascript" src="scripts.js"></script>
+	<script>
+  $(document).foundation();
+
+	</script>
     <!--GOOLGE ANALYTICS-->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -33,5 +83,5 @@
       ga('create', 'UA-43365901-2', 'addison.im');
       ga('send', 'pageview');
     </script>
-
 </body>
+</html>

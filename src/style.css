@@ -5,18 +5,33 @@ html, body {
 	height:100%;
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
+	background-color: #232323;
 }
 ul {
 	padding:0;
 }
-
-
+li {
+	list-style-type: none;
+	margin-bottom: 10px;
+	padding:0;
+	height: 100%;
+}
+a { 
+	font-size:17px;
+	color:#005a97;
+	text-decoration: none;
+}
+a:hover{
+	color:#003e69;
+}
+.inner-wrap{
+	background:url('img/old_moon.png') repeat;
+}
+.info-wrap {
+	margin-top: 68px;
+}
 .md {
 	display: none;
-}
-
-.wrapper {
-	margin-top:58px;
 }
 
 .main {
@@ -44,33 +59,54 @@ ul {
 	width:240px;
 }
 
-.main h3 a {
-	color: white;
-	font-size: 24px;
-	font-weight: lighter;
+.right-off-canvas-toggle{
+	color:white;
 	float:right;
-	text-decoration: none;
-	margin-right:8px;
+	margin:20px 10px 0 0;
+	font-weight: 100;
+  	font-style: normal;
+  	font-size: 22px;
+  	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
+}
+.right-off-canvas-toggle:hover{
+	color:#e2e2e2;
+}
+.right-off-canvas-menu{
+	min-height: 900px;
+	overflow: hidden;
+
 }
 
+.off-canvas-list li a {
+  font-weight: 100;
+  font-style: normal;
+  font-size: 24px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
+}
+.off-canvas-list li:nth-of-type(1){
+	margin-top:25px;
+}
 input[type="search"]{
-	height: 25px;
-	width: 160px;
+	height: 60px;
+	width: 95%;
 	font-size: 17px;
 	text-align: left;
 }
 #searchSub{
 	margin-left:-2000px;
 }
-li {
-	list-style-type: none;
-}
-.images{
+
+.images {
 	padding:0;
+	margin:80px auto 20px auto;
+	display: block;
+	max-width:500px;
+	background-image:url('img/old_moon.png');
+	background-repeat: repeat-y;
+	background-color: transparent;
+
 }
 .images li {
-	margin:20px auto;
-	display:block;
 	text-align: center;
 }
 .imgur-gal li {
@@ -82,7 +118,7 @@ li {
 .thumbnail {
 	width:350px;
 	height:auto;
-	margin:0 auto;
+	margin:15px auto;
 	display: block;
 }
 

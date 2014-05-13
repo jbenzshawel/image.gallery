@@ -1,27 +1,34 @@
 <?php
-
 	class Gallery{
 		/**
 		 * @param $url = string url of reddit subreddit to scrape images from
 		 * @param $page = string or int of page number to scrape from 
 		 * returns $images array 
 		 */
-		public static function get_images($url, $page){
-			//$url = $this->url;
-			//$page = $this->page;
+		public static function get_images($subreddit, $page){
 			$images = array();
-			$feed_url = isset($page) ? ((int)$page > 0 ? $url . '&page=' . $page : $url) : $url;
+			$url = "http://reddit.com/r/$subreddit.rss";
+			$next_page = $page + 1;
+			$limit = 25*$page;
+			$after = $limit - 25;
+			$feed_url = isset($page) ? ((int)$page > 0 ? "$url?limit=$limit"  : $url) : $url;
 			$reddit_scrape = file_get_contents($feed_url);
-			$pattern = '#<a\s+href=[\'"]([^\'"]+)[\'"]\s*(?:title=[\'"]([^\'"]+)[\'"])?\s*>((?:(?!</a>).)*)</a>#i';
-			preg_match_all($pattern,$reddit_scrape, $matches, PREG_OFFSET_CAPTURE);
-			foreach($matches[0] as $link){
-				if(strpos($link[0], '[link]')) {
-					preg_match('/<a href="(.+)">/', $link[0], $match);
-					$images[] = $match[1];
+			$reddit_scrape_array = explode(" ", $reddit_scrape);
+			foreach($reddit_scrape_array as $row){
+				if(strpos($row, '[link]')) {
+					$images[] = substr($row, 10, strlen($row) - 35);  
 				}
 			}
-			return $images;
+			if($limit == 25){
+				return $images;
+			} else {
+				for($i = count($images) - 25; $i < count($images); $i++){
+					$new_images[] = $images[$i];
+				}
+				return $new_images;
+			}
 		}
+
 		/**
 		 * @param $url = string of imgur gallery url 
 		 * retruns $results array("gallery" => $gallery, "title" => $title)
@@ -42,6 +49,27 @@
 			$results = array("gallery" => $gallery, "title" => $title);
 			
 			return $results;
+		}
+
+
+		public static function fetchPosts($category, $limit, $after){
+		  	// Load the XML source
+			$xml = new DOMDocument;
+			if($category == "all" or strlen($category) == 0){
+				$feedURL = 'http://www.reddit.com/.rss?limit=' . $limit;
+			} else{
+				$feedURL = 'http://www.reddit.com/r/' . $category . '.rss?limit=' . $limit;
+			}
+			//echo $feedURL . "<br/>";
+			$xml->load($feedURL);
+			$xsl = new DOMDocument;
+			$xsl->load('format-posts.xsl');
+
+			// Configure the transformer
+			$proc = new XSLTProcessor;
+			$proc->importStyleSheet($xsl); // attach the xsl rules
+			$xsl = $proc ->setParameter('', 'after', $after);
+			echo $proc->transformToXML($xml);
 		}
 	}
 

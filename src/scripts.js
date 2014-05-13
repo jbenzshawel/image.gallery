@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $(document).foundation();
   // initialize header toggle 
   $('body').bind('mousewheel', function(e){
     if(e.originalEvent.wheelDelta < 0) {
@@ -35,7 +36,7 @@ $(document).ready(function(){
     // Listen for changes on first row and get amount value
       $(document).on('change', target, function(){
       var subreddit = $('input[name="s"]').val();
-      var url = 'http://www.addison.im/oneK/' + subreddit + "/";
+      var url = '?subreddit=' + subreddit + "";
       window.location.href = url;
     });
 
