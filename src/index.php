@@ -74,7 +74,6 @@
 					} elseif (substr($image['link'], 0, 21) == 'http://www.reddit.com' ) {
 						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 					} elseif(strpos($image['link'], 'imgur') and substr($image['link'], -4, 1) != ".")  {
-						var_dump($image['link']);
 						$cleaned_link = strpos($image['link'], "&") ? substr($image['link'], 0, stripos($image['link'], "&") ) : $image['link'];
 						echo '<li><a class="fancybox" rel="group"title="' . $image['title'] . ' href="' . $cleaned_link . '"><img class="thumbnail" src="'. $cleaned_link . '.jpg" alt=""/></a></li>' . "\n"; 
 					} else{
