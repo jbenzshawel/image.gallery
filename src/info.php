@@ -12,6 +12,23 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+<?php
+		require_once('fetch-links.php');
+		$page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$next_page = $page + 1;
+		$limit = 25*$page;
+		$after = $limit - 25;
+		$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
+		if($subreddit != "gonewild"){
+			$content = Gallery::fetchPosts($subreddit, $limit, $after);
+			$link_info = "?subreddit=$subreddit&page=$page";
+		}else {
+			$content = Gallery::fetchPosts($subreddit, $limit, $after);
+			$link_info = "?page=$page";
+		}
+	
+		$i = 0;
+	?>
 <!--Off Canvas Wrapper-->
 <div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">
@@ -23,29 +40,12 @@
 			<!-- Off Canvas Menu -->
 		    <aside class="right-off-canvas-menu">
 		        <ul class="off-canvas-list">
-		          <li>'<input type="search" placeholder="search subreddits" name="s"></input><input type="submit" id="searchSub" ></input></li>
-		          <li><a href="info.php">Details View</a></li>
-		          <li><a href="index.php">Gallery View</a></li>
+		          <?php include 'sidebar.php'; ?>
 		        </ul>
 		    </aside>
 		</header><!--End Header-->
 		<!--Main Content-->
 		<div class="info-wrap">
-		<?php
-			require_once('fetch-links.php');
-			$page = isset($_GET['page']) ? $_GET['page'] : 1;
-			$next_page = $page + 1;
-			$limit = 25*$page;
-			$after = $limit - 25;
-			$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
-			if($subreddit != "gonewild"){
-				$content = Gallery::fetchPosts($subreddit, $limit, $after);
-			}else {
-				$content = Gallery::fetchPosts($subreddit, $limit, $after);
-
-			}
-			$i = 0;
-		?>
 		<?php 
 			echo $content; 
 			if($subreddit == "all"):
@@ -55,7 +55,7 @@
 		<?php elseif($page == 5): ?>
 			<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
 		<?php else: ?>
-				<a href=<?php echo '"' . $inputs['category'] . '&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
+				<a href=<?php echo '"' . $subreddit . '&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
 		<?php endif; ?>
   <!-- close the off-canvas menu -->
   <a class="exit-off-canvas"></a>

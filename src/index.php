@@ -19,9 +19,13 @@
 	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
 	if($subreddit != "gonewild"){
 		$images = Gallery::get_images($subreddit, $page);
+		$link_info = "?subreddit=$subreddit&page=$page";
 	}else {
 		$images = Gallery::get_images($subreddit, $page);
-
+		$link_info = "?page=$page";
+	}
+	if(!isset($link_info)){
+		$link_info="";
 	}
 	$i = 0;
 ?>
@@ -36,9 +40,7 @@
 			<!-- Off Canvas Menu -->
 		    <aside class="right-off-canvas-menu">
 		        <ul class="off-canvas-list">
-		          <li>'<input type="search" placeholder="search subreddits" name="s"></input><input type="submit" id="searchSub" ></input></li>
-		          <li><a href="info.php">Details View</a></li>
-		          <li><a href="index.php">Gallery View</a></li>
+		          <?php include 'sidebar.php'; ?>
 		        </ul>
 		    </aside>
 		</header><!--End Header-->

@@ -69,7 +69,7 @@
 			$proc = new XSLTProcessor;
 			$proc->importStyleSheet($xsl); // attach the xsl rules
 			$xsl = $proc ->setParameter('', 'after', $after);
-			echo $proc->transformToXML($xml);
+			return $proc->transformToXML($xml);
 		}
 	}
 

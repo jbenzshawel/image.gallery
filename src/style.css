@@ -92,8 +92,46 @@ input[type="search"]{
 	font-size: 17px;
 	text-align: left;
 }
+
 #searchSub{
 	margin-left:-2000px;
+}
+.post {
+	list-style-type: none;
+	width:98%;
+	margin:12px auto 22px auto;
+	display: block;
+	padding:0;
+}
+
+.post li:nth-of-type(1){
+	margin: 0 0 -15px 85px;
+}
+
+.post li:nth-of-type(2){
+	margin:7px 0 0 0;
+}
+
+.post li:nth-of-type(2) img{
+	margin:-10px 0 7px 0;
+}
+.post li:nth-of-type(3){
+	margin: -65px 0 0 85px;
+}
+
+.post td:first-child img{
+	margin:-20px 0 0 0;
+}
+
+.post td:nth-of-type(2){
+	margin: 0 0 0 5px;
+	padding-left: 9px;
+}
+ 
+#morePosts {
+	margin:15px auto;
+	display: block;
+	text-align: center;
 }
 
 .images {
