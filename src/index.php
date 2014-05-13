@@ -34,7 +34,7 @@
 	<div class="inner-wrap">
 		<!--Header-->
 		<header class="main">
-			<h2><a href="#">Wank Gallery</a></h2>
+			<h2><a href="index.php">Wank Gallery</a></h2>
 			<a class="right-off-canvas-toggle" href="#" >Menu</a>
 
 			<!-- Off Canvas Menu -->

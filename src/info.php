@@ -34,7 +34,7 @@
 	<div class="inner-wrap">
 		<!--Header-->
 		<header class="main">
-			<h2><a href="#">Wank Gallery</a></h2>
+			<h2><a href="info.php">Wank Gallery</a></h2>
 			<a class="right-off-canvas-toggle" href="#" >Menu</a>
 
 			<!-- Off Canvas Menu -->
@@ -56,7 +56,7 @@
 		<?php else: ?>
 				<a href=<?php echo '"' . $subreddit . '&page=' . $next_page . '"'; ?> id="morePosts">Page <?php echo $next_page; ?></a>
 		<?php endif; ?>
-		
+
   <!-- close the off-canvas menu -->
   <a class="exit-off-canvas"></a>
 
