@@ -50,13 +50,21 @@ a:hover{
 .main h2 a {
 	color: white;
 	font-size: 24px;
-	font-weight: lighter;
 	text-decoration: none;
 	margin-top: 114px;
 	position: absolute;
 	top:-89px;
-	right: 78%;
+	left: 10px;
 	width:240px;
+	font-family: 'Roboto', sans-serif;
+  	font-weight: 100;
+}
+
+.main a {
+	font-family: 'Roboto', sans-serif;
+  	font-weight: 100;
+  	font-size: 22px;
+
 }
 
 .right-off-canvas-toggle{
@@ -65,8 +73,6 @@ a:hover{
 	margin:20px 10px 0 0;
 	font-weight: 100;
   	font-style: normal;
-  	font-size: 22px;
-  	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
 }
 .right-off-canvas-toggle:hover{
 	color:#e2e2e2;
@@ -78,21 +84,29 @@ a:hover{
 }
 
 .off-canvas-list li a {
-  font-weight: 100;
-  font-style: normal;
-  font-size: 24px;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
-}
+  	font-style: normal;
+  	font-size: 24px;
+  	font-family: 'Roboto', sans-serif;
+  	font-weight: 100;}
+
+ /*@-moz-document url-prefix() { 
+	.off-canvas-list li a {
+  		font-weight: normal;}
+	}
+ }*/
 .off-canvas-list li:nth-of-type(1){
 	margin:12.5px 0;
 }
 input[type="search"]{
-	height: 60px;
-	width: 95%;
+	height: 18px;
+	width: 92%;
 	margin: 40px auto -20px auto;
+	padding:4px;
 	display: block;
 	font-size: 17px;
 	text-align: left;
+	border:1px solid #333;
+	border-radius: 6px;
 }
 
 #searchSub{
@@ -169,6 +183,12 @@ input[type="search"]{
 	text-align: center;
 }
 
+/* Media Queries */
+@media screen and (max-width:767px){
+.main h2 a {
+	right:0;
+	left:8px;
+}
 @media screen and (max-width:480px){
 	.images li {
 		margin: 5px 0 5px -5px;

@@ -1,5 +1,6 @@
+$(document).foundation();
 $(document).ready(function(){
-  $(document).foundation();
+
   // initialize header toggle 
   $('body').bind('mousewheel', function(e){
     if(e.originalEvent.wheelDelta < 0) {
@@ -48,5 +49,4 @@ $(".fancybox").fancybox({
     openEffect  : 'none',
     closeEffect : 'none'
   });
-  
 });

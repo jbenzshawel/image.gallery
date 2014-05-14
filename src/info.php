@@ -1,22 +1,24 @@
 <!doctype html>
 <html>
 <head>
+<?php
+	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
+	if($subreddit == 'gonewild'){
+		$title = "Wank Gallery";
+	} else {
+		$title = "/r/$subreddit - Wank Gallery";
+	} ?>
 	<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<?php
-		$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
-		if($subreddit == 'gonewild'){
-			$title = "Wank Gallery";
-		} else {
-			$title = "/r/$subreddit - Wank Gallery";
-		} ?>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<title><?php echo $title; ?></title>
-
+	
 	<!--Styles-->
-	<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" />
+	<link rel="stylesheet" type="text/css" href="lib/foundation/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="lib/foundation/css/foundation.css" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" />
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <?php
@@ -39,7 +41,6 @@
 		<header class="main">
 			<h2><a href="info.php">/r/<?php echo $subreddit; ?></a></h2>
 			<a class="right-off-canvas-toggle" href="#" >Menu</a>
-
 			<!-- Off Canvas Menu -->
 		    <aside class="right-off-canvas-menu">
 		        <ul class="off-canvas-list">
@@ -51,19 +52,15 @@
 		<div class="info-wrap">
 			<?php echo $content; ?>
 		</div>
-
-		<?php if($subreddit == "gonewild"): ?>
-				<a href="<?php echo '?page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
-		<?php elseif($page == 5): ?>
-			<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
-		<?php else: ?>
-				<a href="<?php echo 'info.php?subreddit=' . $subreddit . '&page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
-		<?php endif; ?>
-
-  <!-- close the off-canvas menu -->
-  <a class="exit-off-canvas"></a>
-
-  </div> <!--End Inner Wrapper-->
+<?php if($subreddit == "gonewild"): ?>
+		<a href="<?php echo '?page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
+<?php elseif($page == 5): ?>
+	<p>Sorry this site only goes back five pages right now. Check back for improvements!</p>
+<?php else: ?>
+		<a href="<?php echo 'info.php?subreddit=' . $subreddit . '&page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>
+<?php endif; ?>
+		<a class="exit-off-canvas"></a><!-- close the off-canvas menu -->
+	</div> <!--End Inner Wrapper-->
 </div><!--End Off Canvas Wrapper-->
 	
 	<!--Framework Stuff-->
