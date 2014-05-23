@@ -14,10 +14,10 @@
 					<li><a href="{$postLink}" target="_blank"><xsl:value-of select="title"/></a></li>
 					<xsl:variable name="descriptionCheck" select="description" />
 					<xsl:if test="not(contains($descriptionCheck, 'img'))">
-						<li><img src="http://placehold.it/75x75" /></li>
+						<li><img src="img/self-post-thumb.png" /></li>
 					</xsl:if>
 					<xsl:if test="contains($descriptionCheck, 'gifs')">
-						<li><img src="http://placehold.it/75x75" /></li>
+						<li><img src="img/self-post-thumb.png" /></li>
 					</xsl:if>
 					<li><xsl:value-of select="description" disable-output-escaping="yes"/></li>
 					<!--<li><xsl:number value="positon()" format="1." /></li>-->

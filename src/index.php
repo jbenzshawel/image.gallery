@@ -11,7 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><?php echo $title; ?></title>
-
+	<!--[if IE 9 ]>    <html class="no-js lt-ie10" lang="en"> <![endif]-->
 	<!--Styles-->
 	<link rel="stylesheet" type="text/css" href="lib/foundation/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="lib/foundation/css/foundation.css" />
@@ -25,16 +25,9 @@
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$next_page = $page + 1;
-	if($subreddit != "gonewild"){
-		$images = Gallery::get_images($subreddit, $page);
-		$link_info = "?subreddit=$subreddit&page=$page";
-	}else {
-		$images = Gallery::get_images($subreddit, $page);
-		$link_info = "?page=$page";
-	}
-	if(!isset($link_info)){
-		$link_info="";
-	} ?>
+	$images = Gallery::get_images($subreddit, $page);
+	$link_info = ($subreddit != "gonewild") ? "?subreddit=$subreddit&page=$page" : "?page=$page";
+	?>
 <!--Off Canvas Wrapper-->
 <div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">
@@ -71,12 +64,12 @@
 
 				} else {
 					if(substr($image['link'], -4, 1) == "."){
-						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt=""/></a></li>' . "\n"; 
+						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt="'. $image['title'] . '"/></a></li>' . "\n"; 
 					} elseif (substr($image['link'], 0, 21) == 'http://www.reddit.com' ) {
 						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 					} elseif(strpos($image['link'], 'imgur') and substr($image['link'], -4, 1) != ".")  {
 						$cleaned_link = strpos($image['link'], "&") ? substr($image['link'], 0, stripos($image['link'], "&") ) : $image['link'];
-						echo '<li><a class="fancybox" rel="group"title="' . $image['title'] . ' href="' . $cleaned_link . '"><img class="thumbnail" src="'. $cleaned_link . '.jpg" alt=""/></a></li>' . "\n"; 
+						echo "<li><a class='fancybox' rel='group'  title='{$image['title']}'  href='$cleaned_link'><img class='thumbnail' src='$cleaned_link.jpg' alt=''/></a></li>\n"; 
 					} else{
 						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 					}
