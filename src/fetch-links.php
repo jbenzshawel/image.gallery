@@ -1,7 +1,6 @@
 <?php
 
 class Gallery{
-<<<<<<< HEAD
     /**
      * @param $url = string url of reddit subreddit to scrape images from
      * @param $page = string or int of page number to scrape from
