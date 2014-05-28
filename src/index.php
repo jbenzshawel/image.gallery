@@ -10,7 +10,7 @@
 			$gallery_title = $gallery['title'][0];
 			echo "<li><ul class='imgur-gal'>";
 			foreach($gallery['gallery'] as $imgur){
-				echo '<li><a class="fancybox-imgur" rel="imgur_gal' . $i . '" href="' . $imgur . '">[Gallery] ' . $gallery_title.'</a></li>' . "\n"; 
+				echo '<li><a class="fancybox-imgur" rel="imgur_gal' . $i . '" href="' . $imgur . '">[Gallery] ' . $image['title'] .'</a></li>' . "\n"; 
 				$j++;
 				if($j > count($gallery['gallery'])/2 - 1){
 					break;
