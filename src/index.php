@@ -1,27 +1,5 @@
-<!doctype html>
-<html>
-<head>
 <?php
-	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : 'gonewild';
-	if($subreddit == 'gonewild'){
-		$title = "Wank Gallery";
-	} else {
-		$title = "/r/$subreddit - Wank Gallery";
-	}?>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title><?php echo $title; ?></title>
-	<!--[if IE 9 ]>    <html class="no-js lt-ie10" lang="en"> <![endif]-->
-	<!--Styles-->
-	<link rel="stylesheet" type="text/css" href="lib/foundation/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="lib/foundation/css/foundation.css" />
-	<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" />
-	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<?php
+	require_once('header.php');
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$next_page = $page + 1;
@@ -61,7 +39,6 @@
 					}
 					echo "</ul></li>";
 					$i++;
-
 				} else {
 					if(substr($image['link'], -4, 1) == "."){
 						echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt="'. $image['title'] . '"/></a></li>' . "\n"; 
@@ -86,23 +63,4 @@
 		<a class="exit-off-canvas"></a><!-- close the off-canvas menu -->
 	</div> <!--End Inner Wrapper-->
 </div><!--End Off Canvas Wrapper-->
-	
-	<!--Framework Stuff-->
-	<script src="lib/jquery.min.1.11.js"></script>
-	<script src="lib/foundation/js/foundation/foundation.js"></script>
-	<script src="lib/foundation/js/foundation/foundation.offcanvas.js"></script>
-	<script src="lib/fancybox/jquery.fancybox.js"></script>
-	<script type="text/javascript" src="scripts.js"></script>
-
-	<!--GOOLGE ANALYTICS-->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		ga('create', 'UA-43365901-3', 'wank.gallery');
-		ga('send', 'pageview');
-	</script>
-</body>
-</html>
+<?php include('footer.php'); ?>

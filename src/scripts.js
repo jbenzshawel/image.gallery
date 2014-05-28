@@ -1,6 +1,5 @@
 $(document).foundation();
 $(document).ready(function(){
-
   // initialize header toggle 
   $('body').bind('mousewheel', function(e){
     if(e.originalEvent.wheelDelta < 0) {
