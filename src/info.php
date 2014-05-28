@@ -15,7 +15,7 @@
 		</header><!--End Header-->
 		<!--Main Content-->
 		<div class="info-wrap">
-			<?php echo $content; ?>
+			<?php echo $details; ?>
 		</div>
 <?php if($subreddit == "gonewild"): ?>
 		<a href="<?php echo '?page=' . $next_page; ?>" id="morePosts">Page <?php echo $next_page; ?></a>

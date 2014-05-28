@@ -32,7 +32,7 @@
 	if(strpos($_SERVER['PHP_SELF'], "info.php") !== FALSE){
 		$limit = 25*$page;
 		$after = $limit - 25;
-		$content = Gallery::fetchPosts($subreddit, $limit, $after);
+		$details = Gallery::fetchPosts($subreddit, $limit, $after);
 	} else{
 		$images = Gallery::get_images($subreddit, $page);
 	} ?>
