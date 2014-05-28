@@ -42,10 +42,20 @@ $(document).ready(function(){
 
 $(".fancybox").fancybox({
     openEffect  : 'none',
-    closeEffect : 'none'
+    closeEffect : 'none',
+    helpers: {
+      overlay: {
+        locked: false
+      }
+    }
   });
   $(".fancybox-imgur").fancybox({
     openEffect  : 'none',
-    closeEffect : 'none'
+    closeEffect : 'none',
+    helpers: {
+      overlay: {
+        locked: false
+      }
+    }
   });
 });
