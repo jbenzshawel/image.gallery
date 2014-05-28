@@ -1,13 +1,4 @@
-<?php
-	require_once('header.php');
-	require_once('fetch-links.php');
-	$page = isset($_GET['page']) ? $_GET['page'] : 1;
-	$next_page = $page + 1;
-	$limit = 25*$page;
-	$after = $limit - 25;
-	$content = Gallery::fetchPosts($subreddit, $limit, $after);
-	$link_info = ($subreddit != "gonewild") ? "?subreddit=$subreddit&page=$page" : "?page=$page";
-	?>
+<?php require_once('header.php'); ?>
 <!--Off Canvas Wrapper-->
 <div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">

@@ -1,25 +1,4 @@
-<?php
-	require_once('header.php');
-	require_once('fetch-links.php');
-	$page = isset($_GET['page']) ? $_GET['page'] : 1;
-	$next_page = $page + 1;
-	$images = Gallery::get_images($subreddit, $page);
-	$link_info = ($subreddit != "gonewild") ? "?subreddit=$subreddit&page=$page" : "?page=$page";
-	?>
-<!--Off Canvas Wrapper-->
-<div class="off-canvas-wrap" data-offcanvas>
-	<div class="inner-wrap">
-		<!--Header-->
-		<header class="main">
-			<h2><a href="index.php">Wank Gallery</a></h2>
-			<a class="right-off-canvas-toggle" href="#" >Menu</a>
-			<!-- Off Canvas Menu -->
-		    <aside class="right-off-canvas-menu">
-		        <ul class="off-canvas-list">
-		          <?php include 'sidebar.php'; ?>
-		        </ul>
-		    </aside>
-		</header><!--End Header-->
+<?php require_once('header.php'); ?>
 		<!--Main Content-->
 		<ul class="images">
 		<?php
