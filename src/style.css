@@ -183,6 +183,28 @@ input[type="search"]{
 	text-align: center;
 }
 
+/*.sidebar_form {
+	width:70%;
+	margin:0 auto;
+	display: block;
+}*/
+#sidebar_form label {
+	float:left;
+	font-size: 26px;
+	background: transparent;
+	font-family: 'Roboto', sans-serif;
+	font-weight: lighter;
+	text-transform: none;
+	color: #999999;
+	margin: 0;
+	border-top: none;
+
+}
+
+#sidebar_form input[type="checkbox"]{
+	margin:16px 5px 5px 10px;
+}
+
 /* Media Queries */
 @media screen and (max-width:767px){
 .main h2 a {

@@ -19,14 +19,14 @@
 			echo "</ul></li>";
 			$i++;
 		} else {
-			if(substr($image['link'], -4, 1) == "."){
-				echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt="'. $image['title'] . '"/></a></li>' . "\n"; 
-			} elseif (substr($image['link'], 0, 21) == 'http://www.reddit.com' ) {
+			if (strpos($image['link'], '.gif') !== FALSE) {
 				echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
-			} elseif(strpos($image['link'], 'imgur') and substr($image['link'], -4, 1) != ".")  {
+			} elseif(substr($image['link'], -4, 1) == "."){
+				echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt="'. $image['title'] . '"/></a></li>' . "\n"; 
+			} elseif(strpos($image['link'], 'imgur') !== FALSE and substr($image['link'], -4, 1) != ".")  {
 				$cleaned_link = strpos($image['link'], "&") ? substr($image['link'], 0, stripos($image['link'], "&") ) : $image['link'];
-				echo "<li><a class='fancybox' rel='group'  title='{$image['title']}'  href='$cleaned_link'><img class='thumbnail' src='$cleaned_link.jpg' alt=''/></a></li>\n"; 
-			} else{
+				echo "<li><a class='fancybox' rel='group'  title='{$image['title']}'  href='$cleaned_link.jpg'><img class='thumbnail' src='$cleaned_link.jpg' alt=''/></a></li>\n"; 
+			} else {
 				echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 			}
 		}

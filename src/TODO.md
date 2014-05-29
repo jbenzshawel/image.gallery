@@ -1,0 +1,3 @@
+- Add combination subreddit search (for example funny+pics+wtf)
+- Finish hooking up gif toggle gif loading (speeds up page load time if gifs are not loaded)
+- Hook up ajax + infinite scrolling 
