@@ -2,18 +2,18 @@
 <html>
 <head>
 <?php
-	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : "gonewild";
-	if($subreddit == "gonewild"){
-		$title = "Wank Gallery"; 
+	$subreddit = isset($_GET['subreddit']) ? $_GET['subreddit'] : "front";
+	if($subreddit == "front"){
+		$title = "Image Gallery"; 
 		$home_logo = $title;
 	} else {
 		$home_logo = "/r/$subreddit";
-		$title = $home_logo . " - Wank Gallery";
+		$title = $home_logo . " - Image Gallery";
 	} ?>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<title><?php echo $title; ?></title>
-	
+
 	<!--Styles-->
 	<link rel="stylesheet" type="text/css" href="lib/foundation/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="lib/foundation/css/foundation.css" />
@@ -27,7 +27,7 @@
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$next_page = $page + 1;
-	$link_info = ($subreddit != "gonewild") ? "?subreddit=$subreddit&page=$page" : "?page=$page";	
+	$link_info = ($subreddit != "front") ? "?subreddit=$subreddit&page=$page" : "?page=$page";	
 	// if in details view load post details else load gallery images
 	if(strpos($_SERVER['PHP_SELF'], "info.php") !== FALSE){
 		$limit = 25*$page;
