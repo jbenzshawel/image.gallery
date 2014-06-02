@@ -34,7 +34,7 @@
 		$after = $limit - 25;
 		$details = Gallery::fetchPosts($subreddit, $limit, $after);
 	} else{
-		$images = Gallery::get_images($subreddit, $page);
+		$images = Gallery::getImages($subreddit, $page);
 	} ?>
 <!--Off Canvas Wrapper-->
 <div class="off-canvas-wrap" data-offcanvas>

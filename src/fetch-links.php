@@ -6,8 +6,8 @@ class Gallery{
      * @param $page = string or int of page number to scrape from
      * returns $images array
      */
-    public static function get_images($subreddit, $page){
-        $url = "http://reddit.com/r/$subreddit.rss";
+    public static function getImages($subreddit, $page){
+        $url = ($subreddit == "front") ? "http://reddit.com/.rss" : "http://reddit.com/r/$subreddit.rss";
         $next_page = $page + 1;
         $limit = 25*$page;
         $after = $limit - 25;
@@ -62,7 +62,7 @@ class Gallery{
 	public static function fetchPosts($category, $limit, $after){
 	  	// Load the XML source
 		$xml = new DOMDocument;
-		if($category == "all" or strlen($category) == 0){
+		if($category == "front" or strlen($category) == 0){
 			$feedURL = 'http://www.reddit.com/.rss?limit=' . $limit;
 		} else{
 			$feedURL = 'http://www.reddit.com/r/' . $category . '.rss?limit=' . $limit;
