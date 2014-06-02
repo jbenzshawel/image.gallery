@@ -19,7 +19,7 @@
 			echo "</ul></li>";
 			$i++;
 		} else {
-			if (strpos($image['link'], '.gif') !== FALSE) {
+			if (strpos($image['link'], '.gif') !== FALSE and !isset($gifs)) {
 				echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="'. $image['link'] .'"><img class="thumbnail" src="img/self-post.png" style="width:180px; height:auto;" alt="selfpost" /></a></li>' . "\n"; 
 			} elseif(substr($image['link'], -4, 1) == "."){
 				echo '<li><a class="fancybox" rel="group" title="' . $image['title'] . '" href="' . $image['link'] . '"><img class="thumbnail" src="' . $image['link'] .'" alt="'. $image['title'] . '"/></a></li>' . "\n"; 

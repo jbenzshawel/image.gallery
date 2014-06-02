@@ -109,6 +109,15 @@ input[type="search"]{
 	border-radius: 6px;
 }
 
+input[type="image"]{
+	width:30px;
+	height: auto;
+	float:right;
+	border: 0;
+	margin:10px 25px 0 0;
+    display: block;
+}
+
 #searchSub{
 	margin-left:-2000px;
 }

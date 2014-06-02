@@ -26,6 +26,7 @@
 <?php
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
+	$gifs = isset($_POST['gifs']) ? $_POST['gifs'] : NULL;
 	$next_page = $page + 1;
 	$link_info = ($subreddit != "front") ? "?subreddit=$subreddit&page=$page" : "?page=$page";	
 	// if in details view load post details else load gallery images
