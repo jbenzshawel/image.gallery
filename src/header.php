@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
 <head>
@@ -26,9 +27,14 @@
 <?php
 	require_once('fetch-links.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
-	$gifs = isset($_POST['gifs']) ? $_POST['gifs'] : NULL;
 	$next_page = $page + 1;
 	$link_info = ($subreddit != "front") ? "?subreddit=$subreddit&page=$page" : "?page=$page";	
+	if(isset($_POST['gifs'])) {
+		$gifs = $_POST['gifs'];
+		$_SESSION['gifs'] = $gifs;
+	} elseif (isset($_SESSION['gifs']) ) {
+		$gifs = $_SESSION['gifs'];
+	}
 	// if in details view load post details else load gallery images
 	if(strpos($_SERVER['PHP_SELF'], "info.php") !== FALSE){
 		$limit = 25*$page;

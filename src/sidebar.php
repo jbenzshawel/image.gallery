@@ -9,7 +9,7 @@ $checked_gifs = (isset($gifs)) ? "checked" : ""; ?>
 <li>
 	<form action="" id="sidebar_form" method="POST">
 		<label for="load_gifs">Load gifs?</label>
-		<input type="checkbox" id="load_gifs" name="gifs" value="checked" <?php echo $checked_gifs; ?>/>
+		<input type="checkbox" id="load_gifs" name="gifs" value="checked" <?php //echo $checked_gifs; ?>/>
 		<input type="image" value="submit" src="img/refresh.png"/>
 	</form>
 </li>
